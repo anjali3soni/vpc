@@ -52,7 +52,7 @@ resource "aws_security_group" "public_sg" {
 
 
 resource "aws_s3_bucket" "website_bucket" {
-  bucket = "jkt1-1234"
+  bucket = "jkt1-12345"
 }
 resource "aws_s3_bucket_public_access_block" "publicallow" {
   bucket = aws_s3_bucket.website_bucket.id

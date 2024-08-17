@@ -77,13 +77,13 @@ resource "aws_s3_bucket_policy" "website_bucket_policy" {
     ]
   })
 }
-# resource "aws_s3_object" "index" {
-#   bucket        = aws_s3_bucket.website_bucket.bucket
-#   key           = "index.html"
-#   source        = "./index.html"
-#   content_type  = "text/html"
-#   etag          = "${md5(file("./index.html"))}"
-# }
+resource "aws_s3_object" "index" {
+  bucket        = aws_s3_bucket.website_bucket.bucket
+  key           = "index.html"
+  source        = "./index.html"
+  content_type  = "text/html"
+  etag          = "${md5(file("./index.html"))}"
+}
 resource "aws_s3_bucket_website_configuration" "web-host-config" {
   bucket = aws_s3_bucket.website_bucket.id
   index_document {

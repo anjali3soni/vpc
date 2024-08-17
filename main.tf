@@ -52,7 +52,7 @@ resource "aws_security_group" "public_sg" {
 
 
 resource "aws_s3_bucket" "website_bucket" {
-  bucket = "jkt1-12345678"
+  bucket = "jkt1-1234"
 }
 resource "aws_s3_bucket_public_access_block" "publicallow" {
   bucket = aws_s3_bucket.website_bucket.id
@@ -77,9 +77,20 @@ resource "aws_s3_bucket_policy" "website_bucket_policy" {
     ]
   })
 }
+# resource "aws_s3_object" "index" {
+#   bucket        = aws_s3_bucket.website_bucket.bucket
+#   key           = "index.html"
+#   source        = "./index.html"
+#   content_type  = "text/html"
+#   etag          = "${md5(file("./index.html"))}"
+# }
 resource "aws_s3_bucket_website_configuration" "web-host-config" {
   bucket = aws_s3_bucket.website_bucket.id
   index_document {
     suffix = "index.html"
   }
+}
+output "s3_url" {
+  description = "s3 obj url"
+  value       = aws_s3_bucket_website_configuration.web-host-config.website_endpoint
 }

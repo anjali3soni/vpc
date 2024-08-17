@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-2"
 }
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
@@ -19,7 +19,7 @@ resource "aws_key_pair" "jk-key" {
 }
 
 resource "aws_instance" "public_instance" {
-  ami                       = "ami-04a81a99f5ec58529"
+  ami                       = "ami-0862be96e41dcbf74"
   instance_type             = "t2.micro"
   subnet_id                 = module.vpc.public_subnets[0]
   associate_public_ip_address = true
